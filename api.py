@@ -1,5 +1,6 @@
-from flask import Flask
+from flask import Flask, request
 from flask.ext.restful import reqparse, abort, Api, Resource
+from grab import Grab
 
 app = Flask(__name__)
 api = Api(app)
@@ -50,13 +51,43 @@ class SitesList(Resource):
         SITES[site_id] = {'url': args['url']}
         return SITES[site_id], 201
 
+class SiteCheck(Resource):
+    def get(self, site_id):
+        abort_if_site_doesnt_exist(site_id)
+        g = Grab()
+        g.go(SITES[site_id]['url'])
+        return g.doc.select('//title').text()
+
+class SiteRules(Resource):
+    def get(self, site_id):
+        abort_if_site_doesnt_exist(site_id)
+        try:
+            return SITES[site_id]['rules']
+        except Exception, e:
+            return {}        
+
+    def post(self, site_id):
+        abort_if_site_doesnt_exist(site_id)
+        SITES[site_id]['rules']=request.form
+        return '', 201
+
+class SiteRule(Resource):
+    def get():
+        pass
+
+    def delete():
+        pass
+
+    def put():
+        pass
 ##
 ## Actually setup the Api resource routing here
 ##
 api.add_resource(SitesList, '/sites/')
-api.add_resource(Site, '/sites/<string:site_id>')
-#api.add_resource(SiteRules, '/sites/<string:site_id>')
-#api.add_resource(SiteCheck, '/check/<string:site_id>')
+api.add_resource(Site, '/site/<string:site_id>')
+api.add_resource(SiteRules, '/site/<string:site_id>/rules/')
+api.add_resource(SiteRule, '/site/<string:site_id>/rule/<string:rule_id>')
+api.add_resource(SiteCheck, '/site/<string:site_id>/check/')
 
 
 if __name__ == '__main__':
