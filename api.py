@@ -6,7 +6,7 @@ api = restful.Api(app)
 
 class HelloWorld(restful.Resource):
     def get(self):
-        return {'hello': 'world'}
+        return {'hello': 'world2'}
 
 api.add_resource(HelloWorld, '/')
 
