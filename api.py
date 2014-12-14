@@ -1,5 +1,6 @@
 from flask import Flask
 from flask.ext.restful import reqparse, abort, Api, Resource
+from grab import Grab
 
 app = Flask(__name__)
 api = Api(app)
@@ -50,13 +51,20 @@ class SitesList(Resource):
         SITES[site_id] = {'url': args['url']}
         return SITES[site_id], 201
 
+class SiteCheck(Resource):
+    def get(self, site_id):
+        abort_if_site_doesnt_exist(site_id)
+        g = Grab()
+        g.go(SITES[site_id]['url'])
+        return g.xpath_text('//title')
+
 ##
 ## Actually setup the Api resource routing here
 ##
 api.add_resource(SitesList, '/sites/')
 api.add_resource(Site, '/sites/<string:site_id>')
 #api.add_resource(SiteRules, '/sites/<string:site_id>')
-#api.add_resource(SiteCheck, '/check/<string:site_id>')
+api.add_resource(SiteCheck, '/check/<string:site_id>')
 
 
 if __name__ == '__main__':
