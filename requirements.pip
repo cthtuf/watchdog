@@ -9,8 +9,11 @@ Werkzeug==0.9.6
 aniso8601==0.90
 argparse==1.2.1
 flask-mongoengine==0.7.1
+grab==0.4.13
 itsdangerous==0.24
+lxml==3.4.1
 mongoengine==0.8.7
+pycurl==7.19.5
 pymongo==2.7.2
 pytz==2014.10
 six==1.8.0
