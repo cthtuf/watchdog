@@ -10,6 +10,132 @@ SITES = {
     1: {'url': 'http://ya.ru'},
 }
 
+CONDITIONS = {
+    1: "Exists",
+    2: "Not exists",
+    3: "Has value",
+    4: "Hasn't value",
+    5: "Contains",
+    6: "Doesn't contains",
+}
+
+PARAMETERS = [
+    {
+        'id' : 1,
+        'name' : 'favicon',
+        'conditions' : [1,2],
+        'tag' : 'link',
+        'attr' : { 
+            'rel' : ['shortcut icon', 'icon'], #shortcut icon in ico, icon in gif\png
+            'type' : ['image/png', 'image/gif', 'image/ico', 'image/x-icon', 'image/vnd.microsoft.icon'],
+            'href' : 
+
+        }
+    },
+    {
+        'id' : 2,
+        'name' : 'meta-keywords',
+        'conditions' : [1,2,3,4,5,6],  
+    },
+    {
+        'id' : 3,
+        'name' : 'meta-description',
+        'conditions' : [1,2,3,4,5,6],
+    },
+    {
+        'id' : 4,
+        'name' : 'meta-copyright',
+        'conditions' : [1,2,3,4,5,6],
+    },
+    {
+        'id' : 5,
+        'name' : 'meta-author',
+        'conditions' : [1,2,3,4,5,6],
+    },
+    {
+        'id' : 6,
+        'name' : 'meta-robots',
+        'conditions' : [1,2,3,4,5,6],
+        'available' : ['follow', 'unfollow', 'index', 'noindex'],
+    },
+    {
+        'id' : 7,
+        'name' : 'title',
+        'conditions' : [1,2,3,4,5,6],
+    },
+    {
+        'id' : 8,
+        'name' : 'rel-author',
+        'conditions' : [1,2,3,4,5,6],
+    },
+    {
+        'id' : 9,
+        'name' : 'rel-publisher',
+        'conditions' : [1,2,3,4,5,6],
+    },
+    {
+        'id' : 10,
+        'name' : 'og-title',
+        'conditions' : [1,2,3,4,5,6],
+    },
+    {
+        'id' : 11,
+        'name' : 'og-type',
+        'conditions' : [1,2,3,4,5,6],
+    },
+    {
+        'id' : 12,
+        'name' : 'og-image',
+        'conditions' : [1,2,3,4,5,6],
+    },
+    {
+        'id' : 14,
+        'name' : 'og-url',
+        'conditions' : [1,2,3,4,5,6],
+    },
+    {
+        'id' : 15,
+        'name' : 'og-description',
+        'conditions' : [1,2,3,4,5,6],
+    },
+    {
+        'id' : 16,
+        'name' : 'twitter-card',
+        'conditions' : [1,2,3,4,5,6],
+    },
+    {
+        'id' : 17,
+        'name' : 'twitter-url',
+        'conditions' : [1,2,3,4,5,6],
+    },
+    {
+        'id' : 18,
+        'name' : 'twitter-title',
+        'conditions' : [1,2,3,4,5,6],
+    },
+    {
+        'id' : 19,
+        'name' : 'twitter-description',
+        'conditions' : [1,2,3,4,5,6],
+    },
+    {
+        'id' : 20,
+        'name' : 'twitter-image',
+        'conditions' : [1,2,3,4,5,6],
+    },
+    {
+        'id' : 21,
+        'name' : 'html-lang',
+        'conditions' : [1,2,3,4,5,6],
+    },
+    {
+        'id' : 22,
+        'name' : 'meta-google',
+        'conditions' : [1,2,3,4,5,6],
+        'available' : ['notranslate'],
+    },
+]
+
 parser = reqparse.RequestParser() #should be global
 
 def abort_if_site_doesnt_exist(site_id):
