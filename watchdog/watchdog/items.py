@@ -12,6 +12,7 @@ class WatchdogItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
     title = scrapy.Field()
-    meta = scrapy.Field()
-    link = scrapy.Field()
-    pass
+    meta_description = scrapy.Field()
+    meta_keywords = scrapy.Field()
+    meta_author = scrapy.Field()
+    favicon = scrapy.Field()
