@@ -10,10 +10,6 @@ class OllyshapSpider(scrapy.Spider):
     )
 
     def parse(self, response):
-    	#print response.xpath('//title')
-    	#print response.xpath('//meta')
-    	for sel in response.xpath('//link'):
-    		print sel.extract()
-    		#print sel.xpath('/@rel').extract()
-    		#if sel.xpath('/@rel').extract() == 'shortcut icon':
-    		#	print 'busted!'
+    	for sel in response.xpath('/html/body/div[2]/div/div[1]/div/a'):
+    		print sel.xpath('@href').extract()[0]
+    		
