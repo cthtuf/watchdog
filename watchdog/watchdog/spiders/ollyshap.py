@@ -39,5 +39,5 @@ class OllyshapSpider(scrapy.Spider):
 	    			if r:
 	    				wdi['meta_author'] = r.extract()[0]
 
-    	print wdi
+    	yield wdi
 
