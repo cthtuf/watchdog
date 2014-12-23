@@ -7,7 +7,11 @@
 #
 #     http://doc.scrapy.org/en/latest/topics/settings.html
 #
+import os
 
+
+BASE_DIR = os.path.abspath(os.path.dirname(__file__))
+LOG_DIR = BASE_DIR+'/logs'
 BOT_NAME = 'watchdog'
 
 SPIDER_MODULES = ['watchdog.spiders']
