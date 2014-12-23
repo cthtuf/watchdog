@@ -15,3 +15,13 @@ NEWSPIDER_MODULE = 'watchdog.spiders'
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'watchdog (+http://www.yourdomain.com)'
+
+ITEM_PIPELINES = {
+    'scrapy_mongodb.MongoDBPipeline' : 300,
+}
+#MONGODB_UNIQUE_KEY = 'GUID'
+MONGODB_SERVER = "localhost"
+MONGODB_PORT = 27017
+MONGODB_DATABASE = "watchdog"
+MONGODB_COLLECTION = "ollyshap"
+MONGODB_ADD_TIMESTAMP = True

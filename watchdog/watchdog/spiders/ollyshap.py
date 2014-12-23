@@ -1,14 +1,23 @@
 # -*- coding: utf-8 -*-
 import scrapy
 from watchdog.items import WatchdogItem
+from scrapy.log import ScrapyFileLogObserver
+from scrapy import log
 
 
 class OllyshapSpider(scrapy.Spider):
     name = "ollyshap"
-    allowed_domains = ["ollyshap.ru"]
+    allowed_domains = ["ollyshap.ru",]
     start_urls = (
-        'http://www.ollyshap.ru/',
+        'http://www.ollyshap.ru/ru/',
+        'http://www.ollyshap.ru/en/'
     )
+
+    def __init__(self, name=None, **kwargs):
+        ScrapyFileLogObserver(open("../../logs/spider.log", 'w'), level=log.logging.INFO).start()
+        ScrapyFileLogObserver(open("../../logs/spider_error.log", 'w'), level=log.logging.ERROR).start()
+
+        super(OllyshapSpider, self).__init__(name, **kwargs)
 
     def parse(self, response):
     	wdi = WatchdogItem()
@@ -38,6 +47,6 @@ class OllyshapSpider(scrapy.Spider):
 	    			r = sel.xpath('@content')
 	    			if r:
 	    				wdi['meta_author'] = r.extract()[0]
-
+        #print '!! =========', wdi         
     	yield wdi
 
